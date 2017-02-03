@@ -1,9 +1,0 @@
-<% if current_user != @user %>
-  <div id="have_form">
-  <% if current_user.have?(item) %>
-    <%= render 'have_it' %>
-  <% else %>
-    <%= render 'have' %>
-  <% end %>
-  </div>
-<% end %>

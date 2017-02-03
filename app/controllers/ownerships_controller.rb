@@ -14,7 +14,8 @@ class OwnershipsController < ApplicationController
     if @item.new_record?
       # TODO 商品情報の取得 RakutenWebService::Ichiba::Item.search を用いてください
       # 楽天APIを使ってitemCodeから商品コードと一致するものを検索する処理
-      items = RakutenWebService::Ichiba::Item.search(keyword: 'keyword')
+      items = RakutenWebService::Ichiba::Item.search(itemCode: params[:item_code])
+      # ownerships?item_code=okaidoku%3A10014442&amp;type=Want
 
       item                  = items.first
       @item.title           = item['itemName']
@@ -47,10 +48,10 @@ class OwnershipsController < ApplicationController
     @item = Item.find(params[:item_id])
 
     # TODO 紐付けの解除。 
-    if params[:type] == 'Have it'
-      current_user.have(@item)
-    else
-      current_user.want(@item)
+    if params[:type] == "Have"
+      current_user.unhave(@item)
+    elsif params[:type] == "Want"
+      current_user.unwant(@item)
     end
     # params[:type]の値にHave itボタンが押された時には「Have」,
     # Want itボタンが押された時には「Want」が設定されています。

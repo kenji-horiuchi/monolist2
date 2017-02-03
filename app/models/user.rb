@@ -57,12 +57,10 @@ class User < ActiveRecord::Base
   def unhave(item)
     h = haves.find_by(item_id: item.id)
     h.destroy if h
-    # have_item = have_items.find_by(item_id: user_id)
-    # have_item.destroy if have_items
   end
   # itemをhaveしている場合true、haveしていない場合falseを返す
   def have?(item)
-    haves.include?(item)           # includeには引数が必要
+    have_items.include?(item)           # includeには引数が必要
   end
   # itemをwantする
   def want(item)
@@ -72,11 +70,9 @@ class User < ActiveRecord::Base
   def unwant(item)
     w = wants.find_by(item_id: item.id)
     w.destroy if w
-    # want_item = want_items.find_by(item_id: user_id)
-    # want_item.destroy if want_items
   end
   # itemをwantしている場合true,wantしていない場合falseを返す
   def want?(item)
-    wants.include?(item)
+    want_items.include?(item)
   end
 end
