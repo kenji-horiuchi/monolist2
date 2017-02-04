@@ -1,5 +1,5 @@
 <div class="container">
-  <!-- 追加 -->
+  <!-- metaタグの設定 -->
   <% content_for :head do %>
     <title><%= @item.title %>- monolist</title>
     <meta name="description" content="<%= @item.title %>に関する情報です。<%= @item.title %>この商品を欲しい人、持ってる人を表示しています。">
@@ -8,7 +8,7 @@
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
-          <!--TODO 商品イメージ -->
+          <!-- 商品イメージ -->
           <!-- image_tag("no-image.png" , alt: @item.title) -->
           <%= image_tag(@item.large_image, alt: @item.title ) %>
           <!-- ownerships_controller.rbより-->
@@ -18,7 +18,7 @@
         <!--TODO 商品タイトル -->
         <%= @item.title %>
       </div>
-      <%= render 'action' , item: @item %>
+      <%= render 'action' , item: @item if logged_in?%>
     </div>
     <div class="item-single-side">
       <div class="side-box">
