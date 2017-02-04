@@ -19,6 +19,7 @@
         <%= @item.title %>
       </div>
       <%= render 'action' , item: @item if logged_in?%>
+      <!-- if logged_in?・・・ログインしている場合のみパーシャルを読み込むようにしている -->
     </div>
     <div class="item-single-side">
       <div class="side-box">
